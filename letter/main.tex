@@ -1,0 +1,169 @@
+%
+% Copyright(C) Pedro Henrique Penna <pedrohenriquepenna@gmail.com>
+%
+% All rights reserved.
+%
+
+\documentclass{letter}
+
+% Paper Format
+\usepackage[a4paper]{geometry}
+
+% Font
+\usepackage{palatino}
+
+% Encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Language
+\usepackage[english]{babel}
+
+
+% Acronyms
+\usepackage{xspace}
+\usepackage[acronym,nowarn]{glossaries}
+\glsdisablehyper
+\input{acronyms.tex}
+\makeglossaries
+
+% Hyper References
+\usepackage[hidelinks]{hyperref}
+
+% Review
+\usepackage{lipsum}
+\usepackage{todonotes}
+
+% Images
+\usepackage{graphicx}
+\usepackage{subcaption}
+\graphicspath{{./img/}}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
+% Math
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{siunitx}
+
+\usepackage[cm]{fullpage}
+\usepackage{fixltx2e}
+\usepackage{multirow}
+
+% Paragraphs
+\usepackage[parfill]{parskip}
+
+% Quotes
+\usepackage{csquotes}
+
+% Colors
+\usepackage{color}
+\definecolor{myBlue}{RGB}{62,73,106}
+
+%-------------------------------------------------------------------------------
+
+% Reviewer Counter
+\newcounter{reviewercounter}
+\newcommand{\newreviewer}{
+	\stepcounter{reviewercounter}\noindent\newline
+	{\noindent\textbf{\Large{Reviewer \#\the\value{reviewercounter}}}}
+}
+
+% Question Counter
+\newcounter{questioncounter}[reviewercounter]
+\newcommand{\question}[1]{
+	\stepcounter{questioncounter}\noindent\textit{\textbf{R\the\value{reviewercounter}-Q\the\value{questioncounter}. #1}}
+}
+
+% Changes
+\newenvironment{changes}[1]{%
+	\vspace{1em}
+	\noindent\underline{List of Changes:}
+	\begin{itemize}#1}
+{\end{itemize}}
+\newcommand{\change}[3]{
+	\item \textbf{Section #1 - #2 Paragraph:} \textit{#3}
+}
+\newcommand{\changeabstract}[1]{
+	\item \textbf{Abstract:} \textit{#1}
+}
+\newcommand{\newsection}[1]{
+	\item \textbf{New section:} #1
+}
+
+%-------------------------------------------------------------------------------
+%	Signature and Address
+%-------------------------------------------------------------------------------
+
+\def\firstname{Pedro Henrique\xspace}
+\def\lastname{Penna\xspace}
+\def\status{PhD Candidate\xspace}
+
+\signature{Pedro Henrique Penna}
+\address{
+	Computer Science Department\\
+	Pontifícia Universidade Católica de Minas Gerais\\
+	Belo Horizonte, Minas Gerais, Brazil
+}
+
+\begin{document}
+
+%-------------------------------------------------------------------------------
+
+\begin{letter}{}
+
+%-------------------------------------------------------------------------------
+%	HEADING BOX
+%-------------------------------------------------------------------------------
+
+\colorbox{myBlue}{
+	\parbox[t]{\textwidth}{
+		\vspace*{1em}
+		\color{white}{\huge~Response to Reviews}
+		\vspace*{1em}
+	}
+}
+
+%-------------------------------------------------------------------------------
+%	LETTER CONTENT
+%-------------------------------------------------------------------------------
+
+\fontsize{10pt}{12pt}\selectfont
+
+\opening{Dear editor and reviewers,}
+
+First of all, we would like to thank you for the opportunity to
+discuss our research and to clarify some of the relevant points
+highlighted by the reviewers. The consideration of the reviews made it
+possible for us to improve the quality our paper even further
+resulting on this new version.
+
+After a careful consideration of each review, we tried to answer every
+questioning from each reviewer by changing the text of the paper when
+necessary, arguing on the reviewer comments or both.  Below is a
+detailed account on each individual reviewer question/position and
+pointers to the relevant modifications in the text.
+
+\begin{quotation}
+%----------------------------------------------------------------------------------------
+
+\noindent\hrulefill
+
+\input{text/1-reviwer.tex}
+
+\end{quotation}
+
+%----------------------------------------------------------------------------------------
+
+
+To conclude, we would like to thank the reviewers once again for taking the
+time to help us improve the paper. Their feedback was invaluable to the
+creation of a better version of the manuscript.
+
+\vspace{2em}
+Sincerely,\\[1em]
+\firstname~\lastname
+
+\end{letter}
+
+\end{document}
